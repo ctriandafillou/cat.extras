@@ -14,7 +14,7 @@ theme_ct_stresspH <- function(base_size=10) {
         axis.ticks=element_line(colour="grey20"),
         panel.border=element_rect(fill=NA),
         legend.background = element_blank(),
-        legend.key.height = unit(5, "mm"),
+        legend.key.height = unit(3, "mm"),
         legend.key = element_blank(),
         strip.background = element_blank(),
         legend.box.spacing = unit(1, "mm")) 
