@@ -10,7 +10,12 @@
 
 
 fit_induction_sigmoid <- function(df, start.list = c(a=120, b=0.05, c=120, d=1), x.cutoff = "none") {
-  # To-do list; return fitting parameters for each group, return goodness-of-fit for each group
+  # To-do list:
+  # 1. return all grouping columns of input dataframe as columns of output dataframe
+  # 2. return fitting parameters for each group
+  # 3. return goodness-of-fit for each group
+  # 4. really sensitive to starting values; means hs/mock samples can't be fit in the same group. Fix?
+  
   xe = filter(df, timepoint < x.cutoff)$timepoint
   ye = filter(df, timepoint < x.cutoff)$med.red
   
