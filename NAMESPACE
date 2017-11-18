@@ -3,6 +3,7 @@
 export(fit_induction_sigmoid)
 export(fit_mm)
 export(fit_mm_size)
+export(gen_rolling_mean)
 export(scale_loglog)
 export(scale_loglog2)
 export(scale_x_log10nice)
