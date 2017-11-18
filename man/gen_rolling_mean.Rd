@@ -4,7 +4,7 @@
 \alias{gen_rolling_mean}
 \title{Calculate rolling mean of a generic column in a dataframe (timeseries)}
 \usage{
-gen_rolling_mean(dat, data.column, time.column = "timepoint", k = "auto",
+gen_rolling_mean(dat, data.column, time.column = timepoint, k = "auto",
   k_val = 0.05, jitter_factor = 0)
 }
 \arguments{
