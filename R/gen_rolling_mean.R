@@ -11,7 +11,7 @@
 #' @return a dataframe with columns "Time" and "fit" representing the rolling mean at each timepoint.
 
 
-gen_rolling_mean <- function(dat, data.column, time.column = "timepoint", k="auto", k_val=0.05) {
+gen_rolling_mean <- function(dat, data.column, time.column = "timepoint", k="auto", k_val=0.05, jitter_factor = 0) {
   y <- dat[data.column]
   if (k == "auto") {
     auto_k <- round(nrow(dat)*k_val)
@@ -20,11 +20,11 @@ gen_rolling_mean <- function(dat, data.column, time.column = "timepoint", k="aut
     }
     print(auto_k)
     fit <- rollmean(y, auto_k, fill = NA)
-    x <- dat$timepoint
+    x <- jitter(dat$timepoint, factor = jitter_factor)
   } else {
     fit <- rollmean(y, k, fill = NA)
-    x <- dat$timepoint
+    x <- jitter(dat$timepoint, factor = jitter_factor)
   }
   #x <- ifelse(is.integer(k/2), dat$Time[round(k/2):(length(dat$Time)-round(k/2)-1)], dat$Time[round(k/2):(length(dat$Time)-round(k/2))])
-  setNames(data.frame(x, fit), c("timepoint", "fit"))
+  setNames(data.frame(x, fit), c("fit.timepoint", "fit"))
 }
