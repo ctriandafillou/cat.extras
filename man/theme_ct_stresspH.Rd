@@ -4,7 +4,7 @@
 \alias{theme_ct_stresspH}
 \title{Paper plotting theme}
 \usage{
-theme_ct_stresspH(base_size = 10)
+theme_ct_stresspH(base_size = 12)
 }
 \arguments{
 \item{base_size}{text size; default is 10}
