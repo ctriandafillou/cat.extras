@@ -10,7 +10,7 @@ fit_mm_size <- function(df, output = "classification") {
   df <- tibble::rowid_to_column(df, "ID")
   
   if (output == "full"){
-    df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior) %>%
+    df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior, ID = df$ID) %>%
       mutate(lambda.1 = mdl$lambda[1],
              lambda.2 = mdl$lambda[2],
              mu.1 = mdl$mu[1],
@@ -20,19 +20,19 @@ fit_mm_size <- function(df, output = "classification") {
       full_join(., df, by = c("FSC.W", "ID"))
     
   } else if (output == "posterior") {
-    df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior) %>%
+    df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior, ID = df$ID) %>%
       full_join(., df, by = c("FSC.W", "ID"))
     
   } else if (output == "classification") {
     if (mdl$mu[1] > mdl$mu[2]) {
       #print(paste(mdl$mu[1], mdl$mu[2], "one greater than 2", sep = " "))
-      df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior) %>%
+      df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior, ID = df$ID) %>%
         full_join(., df, by = c("FSC.W", "ID")) %>%
         mutate(classification = factor(ifelse(comp.1 > 0.5, "high", "low"), levels = c("low", "high")))
       
     } else {
       #print(paste(mdl$mu[1], mdl$mu[2], "two greater than 1", spe = " "))
-      df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior) %>%
+      df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior, ID = df$ID) %>%
         full_join(., df, by = c("FSC.W", "ID")) %>%
         mutate(classification = factor(ifelse(comp.2 > 0.5, "high", "low"), levels = c("low", "high")))
     }
