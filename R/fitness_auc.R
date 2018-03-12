@@ -14,5 +14,6 @@ fitness_auc <- function(dat, normalize = FALSE) {
   }
   
   auc <- Bolstad2::sintegral(dat$timepoint, dat$norm.growth.ratio)$int
-  setNames(data.frame(auc), c("auc"))
+  timerange <- max(dat$timepoint, na.rm = T) - min(dat$timepoint, na.rm = T)
+  setNames(data.frame(auc, timerange), c("auc", "time.range"))
 }
