@@ -4,7 +4,7 @@
 \alias{scale_x_log2nice}
 \title{Scientific log2 scale for x}
 \usage{
-scale_x_log2nice(name = NULL, omag = seq(-10, 20), ...)
+scale_x_log2nice(name = waiver(), omag = seq(-10, 20), ...)
 }
 \description{
 Creates a nice log 2 scale for plots (goes with scales package and ggplot2).
