@@ -5,7 +5,7 @@
 #' @export
 #' @return a classified dataset ("classification", default), a dataset with the posteriors added as columns ("posterior"), or a dataset with posteriors and information about the mixtures ("full")
 
-fit_mm_size <- function(df, output = "classification") {
+fit_mm_size <- function(df, output = "classification", conf = 0.5) {
   mdl <- normalmixEM(df$FSC.W, 2)
   df <- tibble::rowid_to_column(df, "ID")
   
@@ -28,13 +28,13 @@ fit_mm_size <- function(df, output = "classification") {
       #print(paste(mdl$mu[1], mdl$mu[2], "one greater than 2", sep = " "))
       df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior, ID = df$ID) %>%
         full_join(., df, by = c("FSC.W", "ID")) %>%
-        mutate(classification = factor(ifelse(comp.1 > 0.5, "high", "low"), levels = c("low", "high")))
+        mutate(classification = factor(ifelse(comp.1 > conf, "high", "low"), levels = c("low", "high")))
       
     } else {
       #print(paste(mdl$mu[1], mdl$mu[2], "two greater than 1", spe = " "))
       df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior, ID = df$ID) %>%
         full_join(., df, by = c("FSC.W", "ID")) %>%
-        mutate(classification = factor(ifelse(comp.2 > 0.5, "high", "low"), levels = c("low", "high")))
+        mutate(classification = factor(ifelse(comp.2 > conf, "high", "low"), levels = c("low", "high")))
     }
     
     

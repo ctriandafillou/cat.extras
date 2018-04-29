@@ -4,7 +4,7 @@
 \alias{fit_mm_size}
 \title{Fit a mixture of two Gaussians to groups of data}
 \usage{
-fit_mm_size(df, output = "classification")
+fit_mm_size(df, output = "classification", conf = 0.5)
 }
 \arguments{
 \item{df}{Dataframe or dataframe subset with a column 'FSC.W' containing data to be fit}
