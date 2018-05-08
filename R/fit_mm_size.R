@@ -32,6 +32,16 @@ fit_mm_size <- function(df, output = "classification", conf = 0.5) {
                                               ifelse(comp.2 > conf, "low", "amb")),
                                        levels = c("amb", "low", "high")))
       
+      }
+    } else if (output == "model") {
+      #reduced.df <- select(df)
+      df.w.posterior <- data.frame(lambda.1 = mdl$lambda[1],
+                                   lambda.2 = mdl$lambda[2],
+                                   mu.1 = mdl$mu[1],
+                                   mu.2 = mdl$mu[2],
+                                   sigma.1 = mdl$sigma[1],
+                                   sigma.2 = mdl$sigma[2], loglik = mdl$loglik)
+    #bind_cols(reduced.df, df.w.posterior)
     } else {
       #print(paste(mdl$mu[1], mdl$mu[2], "two greater than 1", spe = " "))
       df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior, ID = df$ID) %>%
@@ -40,7 +50,5 @@ fit_mm_size <- function(df, output = "classification", conf = 0.5) {
                                               ifelse(comp.1 > conf, "low", "amb")),
                                       levels = c("amb", "low", "high")))
     }
-    
-    
   }
-}
+
