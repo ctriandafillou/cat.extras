@@ -5,14 +5,14 @@
 \title{Calculate rolling mean of a generic column in a dataframe (timeseries)}
 \usage{
 gen_rolling_mean(dat, data.column, time.column = timepoint, k = "auto",
-  k_val = 0.05, jitter_factor = 0)
+  k_val = 0.05, jitter_factor = 0, align = "center")
 }
 \arguments{
 \item{dat}{A dataframe or dataframe subset to act on.}
 
 \item{data.column}{a string representing the name of the column containing the timeseries observations}
 
-\item{time.column}{a string representign the name of the column containing the time; default is "timepoint"}
+\item{time.column}{a string representing the name of the column containing the time; default is "timepoint"}
 
 \item{k}{Indicates method to use for binwidth. If k is an integer, this will be the number of samples to include in the averaging bin. If k is "auto", the binwidth will be determined for each subset individually, size will be determined by k_val}
 
