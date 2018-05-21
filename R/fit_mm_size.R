@@ -7,7 +7,7 @@
 
 fit_mm_size <- function(df, output = "classification", conf = 0.5) {
   mdl <- normalmixEM(df$FSC.W, 2)
-  df <- tibble::rowid_to_column(df, "ID")
+  df <- tibble::rowid_to_column(df, "ID") # Add an ID column to prevent creation of duplicates in downstream dataframe joining.
 
   if (output == "full"){
     df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior, ID = df$ID) %>%
