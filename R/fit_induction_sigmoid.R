@@ -9,7 +9,7 @@
 
 
 
-fit_induction_sigmoid <- function(df, start.list = c(a=120, b=0.05, c=120, d=1), x.cutoff = "none") {
+fit_induction_sigmoid <- function(df, start.list = c(a=120, b=0.05, c=120, d=1), x.cutoff = "none", extend.to.zero = F) {
   # To-do list:
   # 1. return all grouping columns of input dataframe as columns of output dataframe
   # 2. return fitting parameters for each group
@@ -22,8 +22,15 @@ fit_induction_sigmoid <- function(df, start.list = c(a=120, b=0.05, c=120, d=1),
   fitmodel <- nls(ye~a/(1 + exp(-b * (xe-c))) + d, start=start.list)
   params = coef(fitmodel)
   
-  xt <- seq(min(xe), max(xe), by = 0.5)
-  yt <- sigmoid(params, xt)
+  if(extend.to.zero) {
+    xt <- seq(0, max(xe), by = 0.5)
+    yt <- sigmoid(params, xt)
+  }
+  else{
+    xt <- seq(min(xe), max(xe), by = 0.5)
+    yt <- sigmoid(params, xt)
+  }
+
   
   setNames(data.frame(xt, yt), c("timepoint", "med.red")) %>% mutate(shock.pH.f = unique(df$shock.pH.f), treatment = unique(df$treatment))
 }

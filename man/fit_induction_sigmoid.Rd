@@ -5,7 +5,7 @@
 \title{Fit induction curve data with a sigmoid}
 \usage{
 fit_induction_sigmoid(df, start.list = c(a = 120, b = 0.05, c = 120, d = 1),
-  x.cutoff = "none")
+  x.cutoff = "none", extend.to.zero = F)
 }
 \arguments{
 \item{df}{Dataframe or dataframe subset with columns "timepoint", "med.red", "shock.pH.f", and "treatment" (last two are grouping variables if a dataframe subset)}
