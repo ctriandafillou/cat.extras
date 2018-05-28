@@ -2,12 +2,12 @@
 
 export(calc.max.in.range)
 export(fit_induction_sigmoid)
+export(fit_induction_sigmoid_base)
 export(fit_mm)
 export(fit_mm_green)
 export(fit_mm_size)
 export(fitness_auc)
 export(gen_rolling_mean)
-export(gen_rolling_mean_all)
 export(general.poly.fit)
 export(return_log2_labels)
 export(scale_loglog)
