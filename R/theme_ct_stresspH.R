@@ -9,7 +9,8 @@ theme_ct_stresspH <- function(base_size=12) {
   theme_grey(base_size=base_size, base_family = "") %+replace% 
   theme(panel.grid=element_blank(),
   		  axis.text = element_text(size = 12),
-        strip.text = element_text(size = 11),
+        #strip.text.x = element_text(size = 10, vjust = 2, margin = margin(t = 10)),
+  		  #strip.text.y = element_text(size = 10, vjust = 2, margin = margin(r = 10)),
         panel.background=element_blank(),
         axis.ticks=element_line(colour="grey20"),
         panel.border=element_rect(fill=NA),
