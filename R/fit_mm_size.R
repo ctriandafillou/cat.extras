@@ -30,15 +30,19 @@ fit_mm_size <- function(df, output = "classification", conf = 0.5) {
         full_join(., df, by = c("FSC.W", "ID")) %>%
         mutate(classification = factor(ifelse(comp.1 > conf, "high",
                                               ifelse(comp.2 > conf, "low", "amb")),
-                                       levels = c("amb", "low", "high")))
+                                       levels = c("amb", "low", "high")),
+               comp.high = comp.1,
+               comp.low = comp.2)
 
       } else {
-        #print(paste(mdl$mu[1], mdl$mu[2], "two greater than 1", spe = " "))
+        #print(paste(mdl$mu[1], mdl$mu[2], "two greater than 1", sep = " "))
         df.w.posterior <- data.frame(FSC.W = mdl$x, mdl$posterior, ID = df$ID) %>%
         full_join(., df, by = c("FSC.W", "ID")) %>%
         mutate(classification = factor(ifelse(comp.2 > conf, "high",
                                               ifelse(comp.1 > conf, "low", "amb")),
-                                      levels = c("amb", "low", "high")))
+                                      levels = c("amb", "low", "high")),
+               comp.high = comp.2,
+               comp.low = comp.1)
      }
   } else if (output == "model") {
     #reduced.df <- select(df)
