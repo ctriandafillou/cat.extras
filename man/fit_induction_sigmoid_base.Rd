@@ -5,7 +5,8 @@
 \title{Fit induction curve data with a sigmoid}
 \usage{
 fit_induction_sigmoid_base(df, start.list = c(a = 1.8, b = 0.03, c = 120),
-  x.cutoff = "none", pr.params = F, xmax = F, constrain.base = F)
+  x.cutoff = "none", pr.params = F, xmax = F, constrain.base = F,
+  return.params = FALSE)
 }
 \arguments{
 \item{df}{Dataframe or dataframe subset with columns "timepoint", "med.red", "shock.pH.f", and "treatment" (last two are grouping variables if a dataframe subset)}
@@ -17,6 +18,10 @@ fit_induction_sigmoid_base(df, start.list = c(a = 1.8, b = 0.03, c = 120),
 \item{pr.params}{logical, whether or not to print the final parameters of the fitted model to screen}
 
 \item{xmax}{maxiumum x value to fit to}
+
+\item{constrain.base}{logical, whether or not to constrain the baseline of the fit to be 1 (0 on a log-transformed scale)}
+
+\item{return.params}{logical, whether or not to return the final parameters in addition to the data}
 }
 \value{
 dataframe with columns "treatment", "shock.pH.f", "timepoint", and "med.red" for plotting

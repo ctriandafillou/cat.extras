@@ -7,13 +7,15 @@
 #' @param x.cutoff maximum timepoint to consider in fitting; default is "none" (fits on all timepoints)
 #' @param pr.params logical, whether or not to print the final parameters of the fitted model to screen
 #' @param xmax maxiumum x value to fit to
+#' @param return.params logical, whether or not to return the final parameters in addition to the data
+#' @param constrain.base logical, whether or not to constrain the baseline of the fit to be 1 (0 on a log-transformed scale)
 #' @export
 #' @return dataframe with columns "treatment", "shock.pH.f", "timepoint", and "med.red" for plotting
 
 
 
 fit_induction_sigmoid_base <- function(df, start.list = c(a=1.8, b=0.03, c=120), x.cutoff = "none", pr.params = F,
-                                       xmax = F, constrain.base = F) {
+                                       xmax = F, constrain.base = F, return.params = FALSE) {
   #dataframe must have columns "timepoint", "med.red", "shock.pH.f" (grouping variable)
   xe = filter(df, timepoint < x.cutoff)$timepoint
   ye = filter(df, timepoint < x.cutoff)$med.red
@@ -42,6 +44,11 @@ fit_induction_sigmoid_base <- function(df, start.list = c(a=1.8, b=0.03, c=120),
   
   
   if(pr.params == T) {print(params)}
+  
+  if(return.params == TRUE) {
+    return(data.frame(t(params)) %>% mutate(shock.pH.f = unique(df$shock.pH.f)))
+  }
+  
   
   setNames(data.frame(xt, yt), c("timepoint", "med.red")) %>% mutate(shock.pH.f = unique(df$shock.pH.f), treatment = unique(df$treatment))
 }
