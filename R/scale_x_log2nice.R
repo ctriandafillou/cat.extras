@@ -7,5 +7,6 @@
 
 scale_x_log2nice <- function(name=waiver(),omag=seq(-10,20),...) {
   breaks2 <- 2^omag
-  scale_x_log10(name,breaks=breaks2,labels = return_log2_labels(omag),...)
+  scale_x_log10(name,breaks=breaks2,
+		labels = parse(text=paste("2^{",omag,"}")),...)
 }
