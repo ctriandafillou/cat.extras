@@ -4,8 +4,15 @@
 \alias{calc.max.in.range}
 \title{Calculate the x and y values in a model where y is maximum}
 \usage{
-calc.max.in.range(df, poly.degree = 2, compute.model = F, y.col = NULL,
-  x.col = NULL, x.min = 30, x.max = 200)
+calc.max.in.range(
+  df,
+  poly.degree = 2,
+  compute.model = F,
+  y.col = NULL,
+  x.col = NULL,
+  x.min = 30,
+  x.max = 200
+)
 }
 \arguments{
 \item{df}{dataframe or dataframe group}

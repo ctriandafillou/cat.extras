@@ -4,9 +4,15 @@
 \alias{fit_induction_sigmoid_base}
 \title{Fit induction curve data with a sigmoid}
 \usage{
-fit_induction_sigmoid_base(df, start.list = c(a = 1.8, b = 0.03, c = 120),
-  x.cutoff = "none", pr.params = F, xmax = F, constrain.base = F,
-  return.params = FALSE)
+fit_induction_sigmoid_base(
+  df,
+  start.list = c(a = 1.8, b = 0.03, c = 120),
+  x.cutoff = "none",
+  pr.params = F,
+  xmax = F,
+  constrain.base = F,
+  return.params = FALSE
+)
 }
 \arguments{
 \item{df}{Dataframe or dataframe subset with columns "timepoint", "med.red", "shock.pH.f", and "treatment" (last two are grouping variables if a dataframe subset)}
